@@ -13,6 +13,18 @@ coord_serpent = []
 demarrage = 1
 
 
+def creer_pomme():
+    """Pour créer la pomme aléatoirement sur le canvas."""
+    global food_positions, pomme
+    x_pomme = rd.randint(2, 58) * mouvement
+    y_pomme = rd.randint(4, 58) * mouvement
+    food_positions = [x_pomme, y_pomme]
+    pomme = canvas.create_rectangle(food_positions[0] - 5,
+                                    food_positions[1] - 5,
+                                    food_positions[0] + 5,
+                                    food_positions[1] + 5,
+                                    fill="red")
+
 def mouvement_snake():
     """Pour faire bouger le serpent dans différentes directions.
         Son mouvement est réalisé en 2 étapes: effacer le serpent puis en
@@ -40,5 +52,15 @@ def mouvement_snake():
     collision_mur()
     collision_serpent()
 
-    
+def collision_pomme():
+    """La liste des coordonnées du serpent ajoute un élément à chaque
+     collision, le score augmente de 1 et une nouvelle pomme est crée."""
+    global score, pomme
+    if (snake_positions[0] == food_positions):
+        score += 1
+        canvas.itemconfig(texte_score, text=f"Score: {score}")
+        snake = snake_positions.append(snake_positions[-1])
+        coord_serpent.append(snake)
+        canvas.delete(pomme)
+        creer_pomme()    
  
