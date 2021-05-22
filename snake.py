@@ -64,3 +64,27 @@ def collision_pomme():
         canvas.delete(pomme)
         creer_pomme()    
  
+def collision_mur():
+    """Si la tête du serpent dépasse les limites du bord, le jeu s'arrête et
+        un bouton restart apparait."""
+    global demarrage
+    if (snake_positions[0][0] - 5 < 10 or snake_positions[0][1] - 5 < 30 or
+       snake_positions[0][0] + 5 > 590 or snake_positions[0][1] + 5 > 590):
+        demarrage = 0
+        canvas.create_text(WIDTH/2, HEIGHT/2, text="Game Over", fill="red",
+                           font=('Times', 20, 'bold'))
+        bouton_start['text'] = "Restart"
+        bouton_start['command'] = restart
+
+
+def collision_serpent():
+    """Si les coordonnées de la tête du serpent et ceux d'un carré du corps
+        sont égaux, le jeu s'arrête et un bouton restart apparait."""
+    global demarrage
+    for i in range(1, len(snake_positions)):
+        if snake_positions[0] == snake_positions[i]:
+            demarrage = 0
+            canvas.create_text(WIDTH/2, HEIGHT/2, text="Game Over", fill="red",
+                               font=('Times', 20, 'bold'))
+            bouton_start['text'] = "Restart"
+            bouton_start['command'] = restart
