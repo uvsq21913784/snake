@@ -20,7 +20,30 @@ direction = "Right"
 score = 0
 coord_serpent = []
 demarrage = 1
+def create_objects():
+    """Pour creer le serpent initial, le bord et le score en haut à gauche."""
+    global coord_serpent, texte_score
+    texte_score = canvas.create_text(60, 10, text=f"Score: {score}",
+                                     fill="white", font=8)
+    for x_positions, y_positions in snake_positions:
+        snake = canvas.create_rectangle(x_positions - 5, y_positions - 5,
+                                        x_positions + 5, y_positions + 5,
+                                        fill="green")
+        coord_serpent.append(snake)
+    creer_pomme()
+    canvas.create_rectangle(10, 30, 590, 590, outline="grey")
 
+
+def keypress(event):
+    global direction
+    if event.char == "q":
+        direction = "Left"
+    if event.char == "d":
+        direction = "Right"
+    if event.char == "z":
+        direction = "Up"
+    if event.char == "s":
+        direction = "Down"
 
 def creer_pomme():
     """Pour créer la pomme aléatoirement sur le canvas."""
