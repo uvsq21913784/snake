@@ -1,3 +1,12 @@
+#########################################
+# groupe MPCI 6
+# Amine karmouh
+# Mohamed Krimi
+# Jeremy Morcos Doueihy
+# MANA ahmed iacob essallami 
+# ramzy
+#https://github.com/uvsq21913784/snake
+#########################################
 import tkinter as tk
 import random as rd
 from tkinter.constants import ALL
